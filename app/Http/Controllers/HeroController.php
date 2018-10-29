@@ -1,8 +1,14 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Hero;
+use App\Emergencies;
 class HeroController extends Controller
 {
+
+   
+
+
     //
     public function show($hero_slug)
     {
@@ -14,7 +20,23 @@ class HeroController extends Controller
         $view->hero = $hero;
         return $view;
     }
-    public function index(){
+
+    public function home(){
         return view('homepage');
+    }
+
+    public function index() {
+      $heroes = Hero::orderBy('name', 'asc')->get();
+      return view('hero.index', [
+        'hero' => $heroes
+      ]);
+    } 
+
+    public function store(Request $request){
+      
+        $emg = Emergencies::create($request->only(['subject', 'description']));
+        
+        
+        return redirect(action('HeroController@index'));
     }
 }

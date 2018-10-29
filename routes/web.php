@@ -11,13 +11,15 @@
 |
 */
 
-/*Route::get('/', function () {
-    return view('homepage');
-}); */
-
-Route::get('/', 'HeroController@index');
-Route::get('/homepage', 'HeroController@index');
-Route::get('/hero/{hero_slug}', 'HeroController@show');
-
-
 Auth::routes();
+Route::get('/', 'HeroController@home');
+Route::get('/homepage', 'HeroController@home');
+Route::get('/hero/{hero_slug}', 'HeroController@show');
+Route::get('/hero', 'HeroController@index');
+Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/hero/{hero_slug}', 'HeroController@store');
+
+
+
+
+
