@@ -11,8 +11,13 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('homepage');
-});
+}); */
+
+Route::get('/', 'HeroController@index');
+Route::get('/homepage', 'HeroController@index');
+Route::get('/hero/{hero_slug}', 'HeroController@show');
+
 
 Auth::routes();
